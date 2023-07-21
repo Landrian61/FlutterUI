@@ -37,7 +37,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List pages = [ const SpecialsPage(), const HomePage(), const SettingsPage()];
+  List pages = [  SpecialsPage(), const HomePage(), const SettingsPage()];
   int pageIndex = 1;
 
   @override

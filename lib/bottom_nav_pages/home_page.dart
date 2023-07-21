@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+ const  HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String? myName;
+
+  getMyAge() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    myName = prefs.getString('myName') ?? 'Everyone';
+  }
+  @override
+  void initState() {
+    super.initState();
+    getMyAge();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +52,12 @@ class HomePage extends StatelessWidget {
             child:  Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Row(
+                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      "Good Morning \n Everyone",
-                      style: TextStyle(
+                     Text(
+                      "Good Morning \n $myName",
+                      style: const TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,

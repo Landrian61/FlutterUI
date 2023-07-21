@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SpecialsPage extends StatelessWidget {
-  const SpecialsPage({Key? key}) : super(key: key);
+  SpecialsPage({Key? key}) : super(key: key);
+
+  String? myName = 'Andrew';
+
+  storeMyAge() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('myName',myName!);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Specials Page"),
+    return  Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap:() => storeMyAge(),
+          child: const  Center(
+            child: Text('NickName'),
+          ),
+        ),
+      ],
     );
   }
 }
